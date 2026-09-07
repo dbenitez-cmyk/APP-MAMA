@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Cierre de Caja MD6</title>
+<meta name="description" content="App de cierre de caja MD6 - conteo de efectivo por turno">
+<meta name="theme-color" content="#0d6e5c">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Cierre Caja">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+
+  <!-- PANTALLA 1: INICIO -->
+  <section id="screen-home" class="screen active">
+    <header class="home-header">
+      <h1>CIERRE DE CAJA MD6</h1>
+      <button id="btn-open-calendar" class="icon-btn" aria-label="Ver histórico">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="5" width="18" height="16" rx="2"></rect>
+          <line x1="16" y1="3" x2="16" y2="7"></line>
+          <line x1="8" y1="3" x2="8" y2="7"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+      </button>
+    </header>
+
+    <div class="home-content">
+      <p class="home-question">¿Qué turno vas a contar?</p>
+      <div class="shift-buttons">
+        <button class="shift-btn" data-shift="Mañana">
+          <span class="shift-icon">☀️</span>
+          <span>Mañana</span>
+        </button>
+        <button class="shift-btn" data-shift="Tarde">
+          <span class="shift-icon">🌤️</span>
+          <span>Tarde</span>
+        </button>
+        <button class="shift-btn" data-shift="Noche">
+          <span class="shift-icon">🌙</span>
+          <span>Noche</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PANTALLA 2: CONTEO -->
+  <section id="screen-count" class="screen">
+    <header class="count-header">
+      <button id="btn-back-home" class="icon-btn" aria-label="Volver">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+      </button>
+      <h1>CIERRE DE CAJA MD6</h1>
+    </header>
+
+    <div class="table-wrap">
+      <table class="cash-table">
+        <thead>
+          <tr>
+            <th class="col-fecha">FECHA</th>
+            <th class="col-tpv">TPV</th>
+            <th class="col-moneda">MONEDA</th>
+            <th class="col-piezas">PIEZAS</th>
+            <th class="col-efectivo">EFECTIVO</th>
+          </tr>
+        </thead>
+        <tbody id="count-tbody">
+          <!-- generado por JS -->
+        </tbody>
+        <tfoot>
+          <tr class="total-row">
+            <td colspan="3" class="total-label">TOTAL</td>
+            <td class="total-piezas" id="total-piezas">0</td>
+            <td class="total-efectivo" id="total-efectivo">0,00 €</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="shift-footer">
+      <span class="shift-footer-label">Turno:</span>
+      <span id="shift-footer-value" class="shift-footer-value">-</span>
+    </div>
+
+    <div class="finish-bar">
+      <button id="btn-finish" class="btn-primary">Conteo de caja finalizado</button>
+    </div>
+  </section>
+
+</div>
+
+<!-- MODAL CALENDARIO -->
+<div id="modal-calendar" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button id="cal-prev" class="icon-btn small" aria-label="Mes anterior">‹</button>
+      <h2 id="cal-month-label">Mes</h2>
+      <button id="cal-next" class="icon-btn small" aria-label="Mes siguiente">›</button>
+    </div>
+    <div class="cal-weekdays">
+      <span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span>
+    </div>
+    <div id="cal-grid" class="cal-grid"></div>
+    <button id="cal-close" class="btn-secondary">Cerrar</button>
+  </div>
+</div>
+
+<!-- MODAL DETALLE DE DIA -->
+<div id="modal-day" class="modal">
+  <div class="modal-content modal-day-content">
+    <div class="modal-header">
+      <h2 id="day-detail-title">Cierres del día</h2>
+    </div>
+    <div id="day-detail-body" class="day-detail-body">
+      <!-- generado por JS -->
+    </div>
+    <button id="day-close" class="btn-secondary">Cerrar</button>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
